@@ -1,3 +1,8 @@
+## Important:
+This branch here is for historical reasons. It served as a demonstration for a discussion on a PostgreSQL JDBC mailing list.
+
+The purpose it to compare easily various versions of the PostgreSQL JDBC driver for performance. The "magic" is happening in the Java/servlet framework. See [the config](frameworks/Java/servlet/config.json) there. Also check the Maven build file.
+
 # Welcome to [TechEmpower Framework Benchmarks (TFB)](http://www.techempower.com/benchmarks/) 
 [![Build Status](https://travis-ci.org/TechEmpower/FrameworkBenchmarks.svg?branch=master)](https://travis-ci.org/TechEmpower/FrameworkBenchmarks) 
 [![Documentation Status](https://readthedocs.org/projects/frameworkbenchmarks/badge/?version=latest)](https://readthedocs.org/projects/frameworkbenchmarks/?badge=latest)
