@@ -20,7 +20,7 @@ exports.app = function(req) {
      try {
        connection = datasource.getConnection();
        let randId, world;
-       if (queryCount === null) {
+       if (!queryCount || isNaN(queryCount) || queryCount < 1) {
          randId = ((Math.random() * 10000) | 0) + 1;
          world = sql.query(connection, 'select * from World where World.id = ' + randId)[0];
          return {
@@ -95,7 +95,7 @@ exports.app = function(req) {
 
 
 const datasource = module.singleton('pooling-datasource', function() {
-  const mysqlConnectionProperties = "?jdbcCompliantTruncation=false&elideSetAutoCommits=true&useLocalSessionState=true&cachePrepStmts=true&cacheCallableStmts=true&alwaysSendSetIsolation=false&prepStmtCacheSize=4096&cacheServerConfiguration=true&prepStmtCacheSqlLimit=2048&zeroDateTimeBehavior=convertToNull&traceProtocol=false&useServerPrepStmts&enableQueryTimeouts=false&useUnbufferedIO=false&useReadAheadInput=false&maintainTimeStats=false&cacheRSMetadata=true";
+  const mysqlConnectionProperties = "?jdbcCompliantTruncation=false&elideSetAutoCommits=true&useLocalSessionState=true&cachePrepStmts=true&cacheCallableStmts=true&alwaysSendSetIsolation=false&prepStmtCacheSize=4096&cacheServerConfiguration=true&prepStmtCacheSqlLimit=2048&zeroDateTimeBehavior=convertToNull&traceProtocol=false&useServerPrepStmts&enableQueryTimeouts=false&useUnbufferedIO=false&useReadAheadInput=false&maintainTimeStats=false&cacheRSMetadata=true&useSSL=false";
   return sql.connect("jdbc:mysql://TFB-database/hello_world" + mysqlConnectionProperties, 'benchmarkdbuser', 'benchmarkdbpass');
 });
 

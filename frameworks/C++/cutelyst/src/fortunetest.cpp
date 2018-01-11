@@ -4,8 +4,6 @@
 
 #include <QSqlQuery>
 
-#include <QThread>
-
 FortuneTest::FortuneTest(QObject *parent) : Controller(parent)
 {
 
@@ -29,16 +27,11 @@ void FortuneTest::fortunes_raw_mysql(Context *c)
     renderRaw(c, fortunes);
 }
 
-static bool caseSensitiveLessThan(const Fortune &a1, const Fortune &a2)
-{
-    return a1.second < a2.second;
-}
-
 FortuneList FortuneTest::processQuery(Context *c, QSqlQuery &query)
 {
     FortuneList fortunes;
 
-    if (!query.exec()) {
+    if (Q_UNLIKELY(!query.exec())) {
         c->res()->setStatus(Response::InternalServerError);
         return fortunes;
     }
@@ -48,7 +41,9 @@ FortuneList FortuneTest::processQuery(Context *c, QSqlQuery &query)
     }
     fortunes.push_back({0, QStringLiteral("Additional fortune added at request time.")});
 
-    qSort(fortunes.begin(), fortunes.end(), caseSensitiveLessThan);
+    std::sort(fortunes.begin(), fortunes.end(), [] (const Fortune &a1, const Fortune &a2) {
+        return a1.second < a2.second;
+    });
 
     return fortunes;
 }

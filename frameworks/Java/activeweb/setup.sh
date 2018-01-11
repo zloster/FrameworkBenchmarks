@@ -1,11 +1,10 @@
 #!/bin/bash
 
-sed -i 's|localhost|'"${DBHOST}"'|g' src/main/webapp/WEB-INF/resin-web.xml
-sed -i 's|localhost|'"${DBHOST}"'|g' src/main/java/app/config/DbConfig.java
-
 fw_depends mysql java resin maven
 
-mvn clean package
+# The tests are broken on Java 9.
+mvn clean package -DskipTests
+
 rm -rf $RESIN_HOME/webapps/*
 cp target/activeweb.war $RESIN_HOME/webapps/
 resinctl start

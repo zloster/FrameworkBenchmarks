@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sed -i 's|localhost|'"${DBHOST}"'|g' src/main/webapp/WEB-INF/resin-web.xml
-
 fw_depends java resin maven postgresql
 
 mvn -P v42 clean compile war:war

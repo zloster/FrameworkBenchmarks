@@ -44,6 +44,28 @@
       "display_name": "servlet",
       "notes": "",
       "versus": "servlet-raw"
+    },
+   "postgres-v9": {
+      "setup_file": "setup_v9",
+      "db_url": "/servlet/postgres",
+      "query_url": "/servlet/postgres?queries=",
+      "fortune_url": "/servlet/postgres-fortunes",
+      "update_url": "/servlet/postgres-update?queries=",
+      "port": 8080,
+      "approach": "Realistic",
+      "classification": "Platform",
+      "database": "Postgres",
+      "framework": "None",
+      "language": "Java",
+      "flavor": "None",
+      "orm": "Raw",
+      "platform": "Servlet",
+      "webserver": "Resin",
+      "os": "Linux",
+      "database_os": "Linux",
+      "display_name": "servlet",
+      "notes": "",
+      "versus": "servlet-raw"
     }
   }]
 }

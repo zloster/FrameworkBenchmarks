@@ -1,9 +1,7 @@
 #!/bin/bash
 
-fw_depends mysql java
+fw_depends postgresql java
 
 ./gradlew clean
 
-sed -i 's|127.0.0.1|'${DBHOST}'|g' src/main/java/app/config/Database.java
-
-./gradlew --refresh-dependencies run -Pargs=production
+./gradlew --no-daemon --refresh-dependencies run -Pargs=8080,production
