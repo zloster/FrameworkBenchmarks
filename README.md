@@ -1,7 +1,12 @@
 ## Important:
 This branch here is for historical reasons. It served as a demonstration for a discussion on a PostgreSQL JDBC mailing list.
 
-The purpose it to compare easily various versions of the PostgreSQL JDBC driver for performance. The "magic" is happening in the Java/servlet framework. See [the config](frameworks/Java/servlet/config.json) there. Also check the Maven build file.
+The purpose it to compare easily various versions of the PostgreSQL JDBC driver for performance. The "magic" is happening in the Java/servlet framework. See [the config](frameworks/Java/servlet/benchmark_config.json) there. Also check the Maven build file.
+In the TFB environment (or the Vagrant box) use the following command to get results:
+
+`tfb --mode test --test servlet servlet-postgres-v42 servlet-postgres-v9`
+
+
 =======
 
 # Welcome to [TechEmpower Framework Benchmarks (TFB)](http://www.techempower.com/benchmarks/) 
