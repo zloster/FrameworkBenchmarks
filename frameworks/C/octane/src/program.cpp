@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <uv.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 #include <octane.h>
 #include "responders/sds_responder.hpp"
 
@@ -42,8 +45,18 @@ void on_request(http_connection* connection, http_request** requests, int number
 }
 
 void timer_callback(uv_timer_t* timer) {
-    time_t curtime;
-    time(&curtime);
-    char* time = ctime(&curtime);
-    current_time = time;
+    // Taken from libreactor implementation
+    static const char *days[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+    static const char *months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    time_t t;
+    struct tm tm;
+    char* date;
+
+    time(&t);
+    gmtime_r(&t, &tm);
+    strftime(date, 30, "---, %d --- %Y %H:%M:%S GMT", &tm);
+    memcpy(date, days[tm.tm_wday], 3);
+    memcpy(date + 8, months[tm.tm_mon], 3);
+
+    current_time = date;
 }
