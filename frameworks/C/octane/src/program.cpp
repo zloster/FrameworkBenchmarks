@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <uv.h>
 #include <stdbool.h>
 #include <string.h>
@@ -14,7 +15,7 @@ char* current_time;
 uv_timer_t timer;
 
 int main(int argc, char *argv[]) {
-    current_time = (char *) malloc(sizeof(char)*30;
+    current_time = (char *) calloc(30, sizeof(char);
     
     http_listener* listener = new_http_listener();
     uv_timer_init(listener->loop, &timer);
@@ -56,7 +57,7 @@ void timer_callback(uv_timer_t* timer) {
     char* new_time;
 
     old_time = current_time;
-    new_time = (char*) malloc(sizeof(char)*30);
+    new_time = (char *) calloc(30, sizeof(char));
 
     time(&t);
     gmtime_r(&t, &tm);
