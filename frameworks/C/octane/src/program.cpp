@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <uv.h>
 #include <stdbool.h>
-#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <octane.h>
@@ -15,6 +14,8 @@ char* current_time;
 uv_timer_t timer;
 
 int main(int argc, char *argv[]) {
+    current_time = (char *) malloc(sizeof(char)*30;
+    
     http_listener* listener = new_http_listener();
     uv_timer_init(listener->loop, &timer);
     uv_timer_start(&timer, timer_callback, 0, 500);
@@ -22,6 +23,7 @@ int main(int argc, char *argv[]) {
     begin_listening(listener, "0.0.0.0", 8000, false, 40, 128, NULL, NULL, NULL, on_request);
 
     printf("Listening...\n");
+    free(current_time);
 }
 
 void on_request(http_connection* connection, http_request** requests, int number_of_requests) {
@@ -50,13 +52,18 @@ void timer_callback(uv_timer_t* timer) {
     static const char *months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     time_t t;
     struct tm tm;
-    char* date;
+    char* old_time;
+    char* new_time;
+
+    old_time = current_time;
+    new_time = (char*) malloc(sizeof(char)*30);
 
     time(&t);
     gmtime_r(&t, &tm);
-    strftime(date, 30, "---, %d --- %Y %H:%M:%S GMT", &tm);
-    memcpy(date, days[tm.tm_wday], 3);
-    memcpy(date + 8, months[tm.tm_mon], 3);
+    strftime(new_time, 30, "---, %d --- %Y %H:%M:%S GMT", &tm);
+    memcpy(new_time, days[tm.tm_wday], 3);
+    memcpy(new_time + 8, months[tm.tm_mon], 3);
 
-    current_time = date;
+    current_time = new_time;
+    free(old_time);
 }
