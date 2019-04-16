@@ -15,7 +15,7 @@ char* current_time;
 uv_timer_t timer;
 
 int main(int argc, char *argv[]) {
-    current_time = (char *) calloc(30, sizeof(char);
+    current_time = (char *) calloc(30, sizeof(char));
     
     http_listener* listener = new_http_listener();
     uv_timer_init(listener->loop, &timer);
