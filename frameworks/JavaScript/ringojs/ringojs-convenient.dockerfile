@@ -1,7 +1,7 @@
-FROM openjdk:8-jdk
+FROM openjdk:11.0.3-jre-stretch
 
 WORKDIR /ringojs_framework
-ENV RINGOJS_VERSION 1.1.0
+ENV RINGOJS_VERSION 1.2.1
 RUN curl -sL -O https://github.com/ringo/ringojs/releases/download/v${RINGOJS_VERSION}/ringojs-${RINGOJS_VERSION}.tar.gz
 RUN tar xf ringojs-${RINGOJS_VERSION}.tar.gz
 ENV RINGOJS_HOME /ringojs_framework/ringojs-${RINGOJS_VERSION}
