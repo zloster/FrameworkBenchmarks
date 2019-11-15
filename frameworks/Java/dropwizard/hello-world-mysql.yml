@@ -40,13 +40,13 @@ database:
     hibernate.jdbc.batch_versioned_data: true
 
   # the maximum amount of time to wait on an empty pool before throwing an exception
-  maxWaitForConnection: 1s
+  maxWaitForConnection: 5s
 
   # the initial number of connections
-  initialSize: 8
+  initialSize: 32 
 
   # the minimum number of connections to keep open
-  minSize: 8
+  minSize: 32 
 
   # the maximum number of connections to keep open
   maxSize: 256
