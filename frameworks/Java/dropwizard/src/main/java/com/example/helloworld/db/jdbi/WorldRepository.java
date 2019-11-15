@@ -45,9 +45,10 @@ public class WorldRepository implements WorldDAO {
 			WorldJDBIImpl dao = handle.attach(WorldJDBIImpl.class);
 
 			final World updates[] = new World[totalQueries];
-
+			final int[] randomIds = Helper.randomWorlds(totalQueries);
+			
 			for (int i = 0; i < totalQueries; i++) {
-				final World world = dao.findById(Helper.randomWorld());
+				final World world = dao.findById(randomIds[i]);
 				world.setRandomNumber(Helper.randomWorld());
 				updates[i] = world;
 			}
