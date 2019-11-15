@@ -40,13 +40,14 @@ public class WorldHibernateImpl extends AbstractDAO<World> implements WorldDAO {
 	public World[] updatesQueries(int totalQueries) {
 		final World[] worlds = new World[totalQueries];
 		Transaction txn = null;
-
+        int[] randomIds = Helper.randomWorlds(totalQueries);
+        
 		try {
 			txn = currentSession().beginTransaction();
 
 			// using write batching. See the data source properties provided in the configuration .yml file
 			for (int i = 0; i < totalQueries; i++) {
-				worlds[i] = findAndModify(Helper.randomWorld(), Helper.randomWorld());
+				worlds[i] = findAndModify(randomIds[i], Helper.randomWorld());
 			}
 			currentSession().flush();
 			currentSession().clear();
