@@ -36,7 +36,7 @@ database:
     charSet: UTF-8
 
   # the maximum amount of time to wait on an empty pool before throwing an exception
-  maxWaitForConnection: 5s
+  maxWaitForConnection: 15s
 
   # the initial number of connections
   initialSize: 32 
@@ -45,7 +45,7 @@ database:
   minSize: 32 
 
   # the maximum number of connections to keep open
-  maxSize: 256
+  maxSize: 512
 
   # whether or not idle connections should be validated
   checkConnectionWhileIdle: false
